@@ -1,0 +1,746 @@
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@200..900&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 15px;
+    font-family: "Unbounded", sans-serif;
+    background-image: linear-gradient(to bottom, #7454d9, #8d61e1, #a36ee9, #b97cf2, #cd8bfa);
+}
+
+.top-bar {
+    background-color: #8e6fe3;
+    color: #ffffff;
+    padding: 5px;
+    text-align: center;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* position: relative;
+    /* para que el logo y botón estén bien colocados */
+    margin: 0 5%;
+    padding: 0 20px;
+    background-color: #ffffff;
+    border-radius: 0 0 50px 50px;
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.2);
+
+    position: absolute;
+    /* Cambiado de relative a absolute */
+    top: 29px;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    /* Asegura que esté sobre el video */
+}
+
+.logo {
+    width: 200px;
+    height: auto;
+    margin: 10px 0;
+}
+
+.nav-links {
+    display: flex;
+}
+
+.icon-social-header {
+    width: 40px;
+    height: auto;
+    margin-right: 20px;
+}
+
+.menu-btn {
+    color: #623cdd;
+    margin-right: 200px;
+    font-size: 30px;
+    cursor: pointer;
+    z-index: 11;
+    /* asegura que esté por encima si hiciera falta */
+}
+
+.sidebar {
+    position: fixed;
+    /* para que se quede quietita */
+    top: 0;
+    left: -250px;
+    /* oculta al inicio */
+    width: 250px;
+    height: 100vh;
+    background-color: #7454d9;
+    padding-top: 60px;
+    transition: left 0.3s ease;
+    z-index: 999;
+    /* encima de todo */
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.2);
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 25px;
+    cursor: pointer;
+    color: white;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0.5px;
+}
+
+.sidebar ul li a {
+    display: block;
+    padding: 15px;
+    color: white;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+
+.sidebar ul li a:hover {
+    background: #623cdd;
+}
+
+/* CUANDO EL TOGGLE ESTÁ ACTIVADO */
+#nav-toggle:checked~.sidebar {
+    left: 0;
+}
+
+.dropdown-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+}
+
+.arrow {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-right: 10px;
+    margin-left: 10px;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid white;
+    /* flecha apuntando hacia arriba inicialmente */
+    transition: transform 0.3s ease;
+}
+
+.dropdown-menu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    background-color: #7454d9;
+}
+
+.dropdown-menu li a {
+    padding: 15px 30px;
+    display: block;
+    color: white;
+    text-decoration: none;
+    font-weight: normal;
+}
+
+.dropdown-menu li a:hover {
+    background: #623cdd;
+}
+
+/* cuando está activado el checkbox, se abre el menú */
+#dropdown-toggle:checked+.dropdown-label+.dropdown-menu {
+    max-height: 500px;
+    /* lo suficiente para mostrar todos los ítems */
+}
+
+/* flecha rotada hacia abajo */
+#dropdown-toggle:checked+.dropdown-label .arrow {
+    transform: rotate(180deg);
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    /* Ajusta la altura (80% de la pantalla) */
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    line-height: 0;
+    /* Elimina espacios vacíos debajo del video */
+
+    z-index: 1;
+
+    /* ESTO CREA EL DIFUMINADO */
+    -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+}
+
+.video-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    height: auto;
+    z-index: -1;
+    /* Lo envía al fondo */
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    /* Clave para que no se deforme */
+
+    width: 100%;
+    /* Ocupa todo el ancho */
+    display: block;
+}
+
+/* Capa oscura para que el texto se lea mejor */
+.video-overlay {
+    background: rgba(0, 0, 0, 0.4);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+
+    position: absolute;
+    /* Ahora flota sobre el video */
+    top: 0;
+    left: 0;
+    color: white;
+
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 50%, #7454d9 100%);
+}
+
+.btn-comprar {
+    padding: 30px;
+    background-color: #7454d9;
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    margin-top: 20px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+main {
+    padding: 0 15%;
+}
+
+.features {
+    margin: 70px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.feature {
+    border: 4px solid #ffffff;
+    color: #ffffff;
+    border-radius: 50px;
+    padding: 30px;
+    width: 45%;
+    height: auto;
+    text-align: center;
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.2);
+}
+
+.feature img {
+    width: 120px;
+    height: auto;
+}
+
+.section-title {
+    background-color: #ffffff;
+    color: #b591ef;
+    font-size: 30px;
+    padding: 15px;
+    border-radius: 20px;
+    text-align: center;
+    margin: 20px 0;
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.2);
+}
+
+.section-title-inverse {
+    background-color: #b591ef;
+    color: #ffffff;
+    font-size: 30px;
+    padding: 15px;
+    border-radius: 20px;
+    text-align: center;
+    margin: 20px 0;
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.2);
+}
+
+.carrusel-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.grid-productos {
+    display: flex;
+    /* Mantenemos flex para que se pongan en línea */
+    gap: 20px;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    padding: 20px 0;
+    width: 100%;
+}
+
+.producto-card {
+    /* ELIMINAMOS width: 100% */
+    background-color: #ffffff;
+    border-radius: 40px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+    /* Calculamos para que entren exactamente 3 considerando los 2 espacios (gap) de 20px */
+    flex: 0 0 calc((100% - 40px) / 3);
+    min-width: calc((100% - 40px) / 3);
+    margin: 0;
+}
+
+.producto-card img {
+    box-sizing: border-box;
+    /* Incluye el padding y el borde en el ancho total */
+    width: 100%;
+    border: 15px solid #ffffff;
+    border-radius: 40px;
+}
+
+.producto-info {
+    padding: 0 20px;
+}
+
+.producto-name {
+    margin: 0;
+}
+
+.colors {
+    display: flex;
+}
+
+.color-option {
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.color-option input {
+    display: none;
+}
+
+.color {
+    width: 25px;
+    height: 25px;
+    border-radius: 100px;
+}
+
+.btn-ver-mas {
+    background-color: #b591ef;
+    font-weight: bold;
+    padding: 8px;
+    border-radius: 20px;
+    border: none;
+    font-family: "Unbounded", sans-serif;
+    margin: 20px 0;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    /* Centra horizontalmente */
+    align-items: center;
+    /* Centra verticalmente (opcional) */
+    width: 100%;
+}
+
+.btn-ver-mas a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.producto-href {
+    text-decoration: none;
+    color: black;
+}
+
+.destacados,
+.ofertas {
+    margin-bottom: 100px;
+}
+
+.flecha-carrusel {
+    width: 40px;
+    /* Ajusta según el tamaño de tu imagen */
+    height: auto;
+    cursor: pointer;
+    position: absolute;
+    z-index: 10;
+    transition: transform 0.2s;
+}
+
+.flecha-carrusel:hover {
+    transform: scale(1.2);
+}
+
+.prev {
+    left: -50px;
+}
+
+.next {
+    right: -50px;
+}
+
+#grid-destacados,
+#grid-ofertas {
+    display: flex;
+    gap: 20px;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    width: 100%;
+}
+
+.sobre-nosotras {
+    margin-bottom: 100px;
+
+}
+
+.info-sobre-nosotras {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+}
+
+/*
+.direccion,
+.horarios {
+    background-color: #ffffff;
+    padding: 20px;
+    width: 45%;
+    text-align: center;
+    border-radius: 40px;
+    margin: 30px 0 0 0;
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.2);
+}*/
+
+.direccion,
+.horarios {
+    background-color: #ffffff;
+    color: #b591ef;
+    border-radius: 50px;
+    padding: 30px;
+    width: 48%;
+    height: auto;
+    text-align: center;
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.2);
+}
+
+.icon-direccion,
+.icon-horarios {
+    width: 60px;
+    height: auto;
+}
+
+.sobre-nosotras iframe {
+    border-radius: 50px;
+    margin: 30px 0;
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.2);
+}
+
+.semana {
+    display: flex;
+    justify-content: space-between;
+    text-align: start;
+}
+
+/*----------------footer----------------*/
+.footer {
+    background-color: #ffffff;
+    margin: 0 5%;
+    padding: 0 30px;
+    border-radius: 50px 50px 0 0;
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.2);
+}
+
+.social-container {
+    display: flex;
+    justify-content: space-around;
+    padding: 50px 0;
+    color: #7454d9;
+}
+
+.icon-social-footer {
+    width: 50px;
+    height: auto;
+    margin: 10px 10px 0 0;
+}
+
+.title-footer {
+    color: #7454d9;
+}
+
+.social {
+    color: #7454d9;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+
+.line-footer {
+    border: none;
+    border-top: 2px solid rgba(116, 84, 217, 0.3);
+}
+
+.copyright {
+    text-align: center;
+    padding: 10px 0;
+    color: #7454d9;
+}
+
+.copyright p {
+    text-align: end;
+}
+
+.firma p {
+    text-align: center;
+}
+
+.firma img {
+    width: 10vh;
+    height: auto;
+}
+
+/*----------------chat----------------*/
+/* Checkbox oculto */
+.chat-toggle {
+    display: none;
+}
+
+/* Estilos del botón flotante */
+.chat-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #ffffff;
+    border: 3px solid #7454d9;
+    color: #7454d9;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    animation: slideInRight 1.5s ease-out;
+    z-index: 5;
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.2);
+}
+
+.chat-button img {
+    width: 30px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.chat-button:hover {
+    background: #f9f6ff;
+}
+
+/* Contenedor del chat */
+.chat-container {
+    width: 360px;
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    background: white;
+    border-radius: 15px;
+    display: none;
+    flex-direction: column;
+    z-index: 5;
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Mostrar chat cuando el checkbox está activo */
+.chat-toggle:checked~.chat-container {
+    display: flex;
+}
+
+/* Encabezado del chat */
+.chat-header {
+    background: #7454d9;
+    color: white;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    /* Alinear verticalmente */
+    gap: 8px;
+    /* Espacio entre la imagen y el nombre */
+    border-radius: 15px 15px 0 0;
+    position: relative;
+    /* Necesario para mover la "X" */
+}
+
+.chat-header h3 {
+    margin: 0;
+    margin-top: 10px;
+}
+
+.chat-logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+    background-color: #ffffff;
+    padding: 5px;
+}
+
+.status {
+    font-size: 12px;
+    color: #d6c3ff;
+}
+
+/* Botón de cerrar el chat */
+.close-chat {
+    position: absolute;
+    top: 5px;
+    /* Mover más arriba */
+    right: 10px;
+    /* Ajustar la posición a la derecha */
+    background: none;
+    border: none;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+/* Ocultar chat cuando se cierra */
+.chat-toggle:not(:checked)~.chat-container {
+    display: none;
+}
+
+/* Cuerpo del chat */
+.chat-body {
+    background: #d6c3ff;
+    padding: 25px 15px;
+}
+
+.chat-message {
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+/* Pie del chat */
+.chat-footer {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background: #f1f1f1;
+    border-radius: 0 0 15px 15px;
+}
+
+.chat-footer input {
+    flex: 1;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    color: gray;
+    background: #e0e0e0;
+    box-sizing: border-box;
+    font-family: "Unbounded", sans-serif;
+}
+
+.send-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+/*----------------RESONSIVE (Móviles)----------------*/
+@media (max-width: 768px) {
+
+    /* Ajustamos el contenedor principal para que no tenga tanto margen */
+    main {
+        padding: 0 10%;
+    }
+
+    /* Reducimos el logo y quitamos márgenes excesivos en el header */
+    .header {
+        margin: 0;
+        border-radius: 0 0 20px 20px;
+        padding: 0 15px;
+        top: 28px;
+    }
+
+    .video-container {
+        height: 100vh;
+        /* Un poco más bajo en celulares */
+    }
+
+    .logo {
+        width: 150px;
+    }
+
+    /* Ajuste del botón menú para que no esté tan desplazado */
+    .menu-btn {
+        margin-right: 0;
+    }
+
+    /* BARRA LATERAL FULL SCREEN */
+    .sidebar {
+        width: 100%;
+        /* Ocupa todo el ancho */
+        left: -100%;
+        /* Se oculta completamente a la izquierda */
+        padding-top: 80px;
+        /* Más espacio para el botón de cerrar */
+    }
+
+    /* Cuando el toggle está activado en móvil */
+    #nav-toggle:checked~.sidebar {
+        left: 0;
+    }
+
+    /* Aumentar el tamaño de los enlaces para que sea fácil tocar con el dedo */
+    .sidebar ul li a {
+        padding: 20px;
+        font-size: 1.1rem;
+        text-align: center;
+        /* Opcional: centra el texto en el menú móvil */
+    }
+
+    .producto-card {
+        /* Calculamos para que entren 2 productos y 1 gap de 20px */
+        flex: 0 0 calc((100% - 20px) / 2);
+        min-width: calc((100% - 20px) / 2);
+    }
+
+    /* Opcional: Si las flechas estorban en móvil, puedes ponerlas sobre el producto */
+    .prev {
+        left: -40px;
+    }
+
+    .next {
+        right: -40px;
+    }
+
+    .flecha-carrusel {
+        width: 30px;
+        /* Un poco más chicas en móvil */
+    }
+}

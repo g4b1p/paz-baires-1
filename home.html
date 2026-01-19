@@ -1,0 +1,693 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="images/paz-baires-logotipo-blanco-2.png" />
+    <link rel="stylesheet" href="home.css" />
+    <title>Paz Baires</title>
+  </head>
+  <body>
+    <header>
+      <div class="top-bar">Compra minima para envios a partir de $50.000.</div>
+      <div class="header">
+        <input type="checkbox" id="nav-toggle" hidden />
+        <label for="nav-toggle" class="menu-btn">&#9776;</label>
+
+        <a href="home.html"
+          ><img class="logo" src="images/paz-baires-logotipo.png" alt=""
+        /></a>
+
+        <nav class="nav-links">
+          <a href="carrito.php"
+            ><img
+              class="icon-social-header"
+              src="images/carrito-icon.png"
+              alt=""
+          /></a>
+          <a href="https://www.instagram.com/pazbaires.ok/" target="_blank"
+            ><img
+              class="icon-social-header"
+              src="images/instagram-icon.png"
+              alt=""
+          /></a>
+          <a href="https://www.facebook.com/pazbaires" target="_blank"
+            ><img
+              class="icon-social-header"
+              src="images/facebook-icon.png"
+              alt=""
+          /></a>
+        </nav>
+
+        <aside class="sidebar">
+          <label for="nav-toggle" class="close-btn">✖</label>
+          <ul>
+            <li><a href="home.php">INICIO</a></li>
+            <li><a href="quiero-comprar.html">QUIERO COMPRAR</a></li>
+            <li class="dropdown">
+              <input type="checkbox" id="dropdown-toggle" hidden />
+              <label for="dropdown-toggle" class="dropdown-label">
+                <a href="tienda.php">TIENDA</a>
+                <span class="arrow"></span>
+              </label>
+              <ul class="dropdown-menu">
+                <li><a href="tienda.php">PIJAMAS</a></li>
+                <li><a href="tienda.php">ACCESORIOS</a></li>
+                <li><a href="tienda.php">BLANQUERIA</a></li>
+                <li><a href="tienda.php">OFERTAS</a></li>
+              </ul>
+            </li>
+          </ul>
+        </aside>
+      </div>
+      <section class="video-container">
+        <video autoplay muted loop playsinline class="video-bg">
+          <source src="images/pazbairesintro.mp4" type="video/mp4" />
+          Tu navegador no soporta videos.
+        </video>
+        <div class="video-overlay">
+          <h1>Bienvenido a nuestra Tienda</h1>
+          <p>Los mejores productos a un clic de distancia</p>
+          <a href="#productos" class="btn-comprar">Ver Catálogo</a>
+        </div>
+      </section>
+    </header>
+
+    <main>
+      <section class="features">
+        <div class="feature">
+          <img src="images/transaccion-icon.png" alt="" />
+          <h2>Elegí tu método de pago</h2>
+          <p>
+            Aceptamos todas las opciones para que elijas la que más te convenga.
+          </p>
+        </div>
+        <div class="feature">
+          <img src="images/envio-icon.png" alt="" />
+          <h2>Enviamos tu compra</h2>
+          <p>
+            Despachamos tu pedido por el transporte o expreso que vos prefieras.
+          </p>
+        </div>
+      </section>
+
+      <section class="productos destacados">
+        <h2 class="section-title">DESTACADOS</h2>
+
+        <div class="carrusel-wrapper">
+          <img
+            src="images/flecha-izq.png"
+            class="flecha-carrusel prev"
+            onclick="scrollCarrusel(-1, 'grid-destacados')"
+          />
+
+          <div class="grid-productos" id="grid-destacados">
+            <div class="producto-card">
+              <a href="producto.html" class="producto-href">
+                <img
+                  class="producto-img"
+                  src="images/ejemplo-producto.jpg"
+                  alt=""
+                />
+                <div class="producto-info">
+                  <p class="producto-name">Conjunto pijama top y short</p>
+                  <p class="precio"><b>$5.800</b></p>
+                  <div class="colors">
+                    <label class="color-option">
+                      <input name="color-option" type="radio" value="rosa" />
+                      <div class="color" style="background-color: pink"></div>
+                    </label>
+                    <label class="color-option">
+                      <input name="color-option" type="radio" value="azul" />
+                      <div
+                        class="color"
+                        style="background-color: lightblue"
+                      ></div>
+                    </label>
+                    <label class="color-option">
+                      <input name="color-option" type="radio" value="verde" />
+                      <div
+                        class="color"
+                        style="background-color: lightgreen"
+                      ></div>
+                    </label>
+                  </div>
+                  <button class="btn-ver-mas">
+                    <a href="producto.html">ver más</a>
+                  </button>
+                </div>
+              </a>
+            </div>
+
+            <div class="producto-card">
+              <a href="producto.html" class="producto-href">
+                <img
+                  class="producto-img"
+                  src="images/ejemplo-producto.jpg"
+                  alt=""
+                />
+                <div class="producto-info">
+                  <p class="producto-name">Conjunto pijama top y short</p>
+                  <p class="precio"><b>$5.800</b></p>
+                  <div class="colors">
+                    <label class="color-option">
+                      <input name="color-option" type="radio" value="rosa" />
+                      <div class="color" style="background-color: pink"></div>
+                    </label>
+                    <label class="color-option">
+                      <input name="color-option" type="radio" value="azul" />
+                      <div
+                        class="color"
+                        style="background-color: lightblue"
+                      ></div>
+                    </label>
+                    <label class="color-option">
+                      <input name="color-option" type="radio" value="verde" />
+                      <div
+                        class="color"
+                        style="background-color: lightgreen"
+                      ></div>
+                    </label>
+                  </div>
+                  <button class="btn-ver-mas">
+                    <a href="producto.html">ver más</a>
+                  </button>
+                </div>
+              </a>
+            </div>
+
+            <div class="producto-card">
+              <a href="producto.html" class="producto-href">
+                <img
+                  class="producto-img"
+                  src="images/ejemplo-producto.jpg"
+                  alt=""
+                />
+                <div class="producto-info">
+                  <p class="producto-name">Conjunto pijama top y short</p>
+                  <p class="precio"><b>$5.800</b></p>
+                  <div class="colors">
+                    <label class="color-option">
+                      <input name="color-option" type="radio" value="rosa" />
+                      <div class="color" style="background-color: pink"></div>
+                    </label>
+                    <label class="color-option">
+                      <input name="color-option" type="radio" value="azul" />
+                      <div
+                        class="color"
+                        style="background-color: lightblue"
+                      ></div>
+                    </label>
+                    <label class="color-option">
+                      <input name="color-option" type="radio" value="verde" />
+                      <div
+                        class="color"
+                        style="background-color: lightgreen"
+                      ></div>
+                    </label>
+                  </div>
+                  <button class="btn-ver-mas">
+                    <a href="producto.html">ver más</a>
+                  </button>
+                </div>
+              </a>
+            </div>
+
+            <div class="producto-card">
+              <a href="producto.html" class="producto-href">
+                <img
+                  class="producto-img"
+                  src="images/ejemplo-producto.jpg"
+                  alt=""
+                />
+                <div class="producto-info">
+                  <p class="producto-name">2 Conjunto pijama top y short</p>
+                  <p class="precio"><b>$5.800</b></p>
+                  <div class="colors">
+                    <label class="color-option">
+                      <input name="color-option" type="radio" value="rosa" />
+                      <div class="color" style="background-color: pink"></div>
+                    </label>
+                    <label class="color-option">
+                      <input name="color-option" type="radio" value="azul" />
+                      <div
+                        class="color"
+                        style="background-color: lightblue"
+                      ></div>
+                    </label>
+                    <label class="color-option">
+                      <input name="color-option" type="radio" value="verde" />
+                      <div
+                        class="color"
+                        style="background-color: lightgreen"
+                      ></div>
+                    </label>
+                  </div>
+                  <button class="btn-ver-mas">
+                    <a href="producto.html">ver más</a>
+                  </button>
+                </div>
+              </a>
+            </div>
+
+            <div class="producto-card">
+              <a href="producto.html" class="producto-href">
+                <img
+                  class="producto-img"
+                  src="images/ejemplo-producto.jpg"
+                  alt=""
+                />
+                <div class="producto-info">
+                  <p class="producto-name">1 Conjunto pijama top y short</p>
+                  <p class="precio"><b>$5.800</b></p>
+                  <div class="colors">
+                    <label class="color-option">
+                      <input name="color-option" type="radio" value="rosa" />
+                      <div class="color" style="background-color: pink"></div>
+                    </label>
+                    <label class="color-option">
+                      <input name="color-option" type="radio" value="azul" />
+                      <div
+                        class="color"
+                        style="background-color: lightblue"
+                      ></div>
+                    </label>
+                    <label class="color-option">
+                      <input name="color-option" type="radio" value="verde" />
+                      <div
+                        class="color"
+                        style="background-color: lightgreen"
+                      ></div>
+                    </label>
+                  </div>
+                  <button class="btn-ver-mas">
+                    <a href="producto.html">ver más</a>
+                  </button>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <img
+            src="images/flecha-der.png"
+            class="flecha-carrusel next"
+            onclick="scrollCarrusel(1, 'grid-destacados')"
+          />
+        </div>
+      </section>
+
+      <section class="productos ofertas">
+        <h2 class="section-title">OFERTAS</h2>
+
+        <div class="carrusel-wrapper">
+          <img
+            src="images/flecha-izq.png"
+            class="flecha-carrusel prev"
+            onclick="scrollCarrusel(-1, 'grid-ofertas')"
+          />
+
+          <div class="grid-productos" id="grid-ofertas">
+            <div class="producto-card">
+              <a href="producto.html" class="producto-href">
+                <img
+                  class="producto-img"
+                  src="images/ejemplo-producto.jpg"
+                  alt=""
+                />
+                <div class="producto-info">
+                  <p class="producto-name">Conjunto pijama top y short</p>
+                  <p class="precio"><b>$5.800</b></p>
+                  <div class="colors">
+                    <label class="color-option">
+                      <input name="color-option" type="radio" value="rosa" />
+                      <div class="color" style="background-color: pink"></div>
+                    </label>
+                    <label class="color-option">
+                      <input name="color-option" type="radio" value="azul" />
+                      <div
+                        class="color"
+                        style="background-color: lightblue"
+                      ></div>
+                    </label>
+                    <label class="color-option">
+                      <input name="color-option" type="radio" value="verde" />
+                      <div
+                        class="color"
+                        style="background-color: lightgreen"
+                      ></div>
+                    </label>
+                  </div>
+                  <button class="btn-ver-mas">
+                    <a href="producto.html">ver más</a>
+                  </button>
+                </div>
+              </a>
+            </div>
+
+            <div class="producto-card">
+              <a href="producto.html" class="producto-href">
+                <img
+                  class="producto-img"
+                  src="images/ejemplo-producto.jpg"
+                  alt=""
+                />
+                <div class="producto-info">
+                  <p class="producto-name">Conjunto pijama top y short</p>
+                  <p class="precio"><b>$5.800</b></p>
+                  <div class="colors">
+                    <label class="color-option">
+                      <input name="color-option" type="radio" value="rosa" />
+                      <div class="color" style="background-color: pink"></div>
+                    </label>
+                    <label class="color-option">
+                      <input name="color-option" type="radio" value="azul" />
+                      <div
+                        class="color"
+                        style="background-color: lightblue"
+                      ></div>
+                    </label>
+                    <label class="color-option">
+                      <input name="color-option" type="radio" value="verde" />
+                      <div
+                        class="color"
+                        style="background-color: lightgreen"
+                      ></div>
+                    </label>
+                  </div>
+                  <button class="btn-ver-mas">
+                    <a href="producto.html">ver más</a>
+                  </button>
+                </div>
+              </a>
+            </div>
+
+            <div class="producto-card">
+              <a href="producto.html" class="producto-href">
+                <img
+                  class="producto-img"
+                  src="images/ejemplo-producto.jpg"
+                  alt=""
+                />
+                <div class="producto-info">
+                  <p class="producto-name">Conjunto pijama top y short</p>
+                  <p class="precio"><b>$5.800</b></p>
+                  <div class="colors">
+                    <label class="color-option">
+                      <input name="color-option" type="radio" value="rosa" />
+                      <div class="color" style="background-color: pink"></div>
+                    </label>
+                    <label class="color-option">
+                      <input name="color-option" type="radio" value="azul" />
+                      <div
+                        class="color"
+                        style="background-color: lightblue"
+                      ></div>
+                    </label>
+                    <label class="color-option">
+                      <input name="color-option" type="radio" value="verde" />
+                      <div
+                        class="color"
+                        style="background-color: lightgreen"
+                      ></div>
+                    </label>
+                  </div>
+                  <button class="btn-ver-mas">
+                    <a href="producto.html">ver más</a>
+                  </button>
+                </div>
+              </a>
+            </div>
+
+            <div class="producto-card">
+              <a href="producto.html" class="producto-href">
+                <img
+                  class="producto-img"
+                  src="images/ejemplo-producto.jpg"
+                  alt=""
+                />
+                <div class="producto-info">
+                  <p class="producto-name">2 Conjunto pijama top y short</p>
+                  <p class="precio"><b>$5.800</b></p>
+                  <div class="colors">
+                    <label class="color-option">
+                      <input name="color-option" type="radio" value="rosa" />
+                      <div class="color" style="background-color: pink"></div>
+                    </label>
+                    <label class="color-option">
+                      <input name="color-option" type="radio" value="azul" />
+                      <div
+                        class="color"
+                        style="background-color: lightblue"
+                      ></div>
+                    </label>
+                    <label class="color-option">
+                      <input name="color-option" type="radio" value="verde" />
+                      <div
+                        class="color"
+                        style="background-color: lightgreen"
+                      ></div>
+                    </label>
+                  </div>
+                  <button class="btn-ver-mas">
+                    <a href="producto.html">ver más</a>
+                  </button>
+                </div>
+              </a>
+            </div>
+
+            <div class="producto-card">
+              <a href="producto.html" class="producto-href">
+                <img
+                  class="producto-img"
+                  src="images/ejemplo-producto.jpg"
+                  alt=""
+                />
+                <div class="producto-info">
+                  <p class="producto-name">1 Conjunto pijama top y short</p>
+                  <p class="precio"><b>$5.800</b></p>
+                  <div class="colors">
+                    <label class="color-option">
+                      <input name="color-option" type="radio" value="rosa" />
+                      <div class="color" style="background-color: pink"></div>
+                    </label>
+                    <label class="color-option">
+                      <input name="color-option" type="radio" value="azul" />
+                      <div
+                        class="color"
+                        style="background-color: lightblue"
+                      ></div>
+                    </label>
+                    <label class="color-option">
+                      <input name="color-option" type="radio" value="verde" />
+                      <div
+                        class="color"
+                        style="background-color: lightgreen"
+                      ></div>
+                    </label>
+                  </div>
+                  <button class="btn-ver-mas">
+                    <a href="producto.html">ver más</a>
+                  </button>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <img
+            src="images/flecha-der.png"
+            class="flecha-carrusel next"
+            onclick="scrollCarrusel(1, 'grid-ofertas')"
+          />
+        </div>
+      </section>
+
+      <section class="sobre-nosotras">
+        <h2 class="section-title">SOBRE NOSOTRAS</h2>
+
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4005.604315587541!2d-58.48012092344262!3d-34.62585005866887!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcc993267983a1%3A0x953bd5fab119147!2sPASEO%20DE%20COMPRAS%20MUNDO%20TEXTIL!5e1!3m2!1ses-419!2sar!4v1768789438516!5m2!1ses-419!2sar"
+          width="100%"
+          height="300"
+          style="border: 0"
+          allowfullscreen=""
+          loading="lazy"
+        ></iframe>
+
+        <div class="info-sobre-nosotras">
+          <div class="direccion">
+            <img
+              class="icon-direccion"
+              src="images/ubicacion-icon.png"
+              alt=""
+            />
+            <h2>Dirección</h2>
+            <p>
+              Campana 560, Galeria Mundo Textil. <br />
+              (local 23 y 25) <br />
+              Flores, Ciudad Autónoma de Buenos Aires.
+            </p>
+          </div>
+
+          <div class="horarios">
+            <img class="icon-horarios" src="images/horario-icon.png" alt="" />
+            <h2>Horarios del local</h2>
+            <div class="semana">
+              <div>
+                <p>Lunes a Viernes</p>
+                <p>Sabado</p>
+                <p>Domingo</p>
+              </div>
+
+              <div>
+                <p>8:00 a 15:00</p>
+                <p>9:00 a 13:00</p>
+                <p>Cerrado</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="social-container">
+        <div class="redes-sociales">
+          <h2 class="title-footer">Seguinos</h2>
+          <a
+            class="social"
+            href="https://www.instagram.com/pazbaires.ok/"
+            target="_blank"
+            ><img
+              class="icon-social-footer"
+              src="images/instagram-icon.png"
+              alt=""
+            />pazbaires</a
+          >
+          <a
+            class="social"
+            href="https://www.facebook.com/pazbaires"
+            target="_blank"
+            ><img
+              class="icon-social-footer"
+              src="images/facebook-icon.png"
+              alt=""
+            />pazbaires</a
+          >
+        </div>
+        <div class="contacto">
+          <h2 class="title-footer">Contacto</h2>
+
+          <p class="social">
+            <img
+              class="icon-social-footer"
+              src="images/telefono-icon.png"
+              alt=""
+            />11 5601 8912
+          </p>
+
+          <p class="social">
+            <img
+              class="icon-social-footer"
+              src="images/correo-icon.png"
+              alt=""
+            />pazbaires.adm@gmail.com
+          </p>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>Paz Baires © Copyright 2025. Todos los derechos reservados.</p>
+        <hr class="line-footer" />
+        <section class="firma">
+          <p>Created by</p>
+          <img src="/imagotipo-gabi-coder.png" alt="" />
+        </section>
+      </div>
+
+      <div class="chat-whatsapp">
+        <!-- Botón para abrir el chat -->
+        <input type="checkbox" id="chat-toggle" class="chat-toggle" />
+        <label for="chat-toggle" class="chat-button">
+          <img src="images/whatsapp-icon.png" alt="" />
+          Haz click aquí para comunicarte
+        </label>
+
+        <!-- Contenedor del chat -->
+        <div class="chat-container">
+          <div class="chat-header">
+            <img
+              src="images/paz-baires-logotipo-2.png"
+              alt="Lab Dental Congreso"
+              class="chat-logo"
+            />
+            <div>
+              <h3>Paz Baires</h3>
+              <span class="status">Online</span>
+            </div>
+            <label for="chat-toggle" class="close-chat">&times;</label>
+          </div>
+          <div class="chat-body">
+            <div class="chat-message">
+              <span class="emoji">📋</span> Hola <span class="emoji">👋</span>,
+              bienvenido a <b><i>Paz Baires</i></b
+              >.
+              <p>¿En qué podemos ayudarte?</p>
+            </div>
+          </div>
+          <div class="chat-footer">
+            <input
+              type="text"
+              id="user-message"
+              placeholder="Hola! Vengo de la página web..."
+            />
+            <button class="send-btn" onclick="sendMessage()">➤</button>
+          </div>
+          <script>
+            function sendMessage() {
+              // Obtener el valor del campo de texto
+              var message = document.getElementById("user-message").value;
+
+              // Codificar el mensaje para que sea seguro en la URL
+              var encodedMessage = encodeURIComponent(message);
+
+              // Construir el enlace de WhatsApp con el mensaje del usuario
+              var whatsappUrl =
+                "https://api.whatsapp.com/send?phone=%2B541128506874&text=" +
+                encodedMessage;
+
+              // Abrir el enlace en una nueva ventana
+              window.open(whatsappUrl, "_blank");
+
+              // Limpiar el campo de texto después de enviar el mensaje
+              document.getElementById("user-message").value = "";
+            }
+          </script>
+        </div>
+      </div>
+    </footer>
+    <script>
+      window.scrollCarrusel = function (direction, idContenedor) {
+        // Ahora usamos 'idContenedor' en lugar de un nombre fijo
+        const contenedor = document.getElementById(idContenedor);
+
+        if (!contenedor) {
+          console.error(
+            "Error: No se encontró el elemento con ID: " + idContenedor,
+          );
+          return;
+        }
+
+        const primeraTarjeta = contenedor.querySelector(".producto-card");
+
+        if (primeraTarjeta) {
+          const anchoTarjeta = primeraTarjeta.offsetWidth;
+          const gap = 20;
+
+          contenedor.scrollBy({
+            left: direction * (anchoTarjeta + gap),
+            behavior: "smooth",
+          });
+        }
+      };
+    </script>
+  </body>
+</html>
