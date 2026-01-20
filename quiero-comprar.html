@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="images/paz-baires-logotipo-blanco-2.png" />
-    <link rel="stylesheet" href="home.css" />
+    <link rel="stylesheet" href="quiero-comprar.css" />
     <title>Paz Baires</title>
   </head>
   <body>
@@ -66,13 +66,145 @@
           Tu navegador no soporta videos.
         </video>
         <div class="video-overlay">
-          <h1>Bienvenido a nuestra Tienda</h1>
-          <p>Los mejores productos a un clic de distancia</p>
-          <a href="#productos" class="btn-comprar">Ver Catálogo</a>
+          <img
+            src="images/carrito-icon.png"
+            class="quiero-comprar-icon"
+            alt=""
+          />
+          <h1>QUIERO COMPRAR</h1>
+          <p>
+            Aquí encontrarás las preguntas frecuentes que hemos recopilado para
+            guiarte en cada paso de tu compra. <br />
+            Nuestro objetivo es que puedas completar tu pedido de forma sencilla
+            y sin complicaciones.
+          </p>
         </div>
       </section>
     </header>
-    <main></main>
+    <main>
+      <section class="acordeon">
+        <div class="acordeon-item">
+          <input
+            type="radio"
+            name="acordeon"
+            id="btn-acordeon1"
+            class="btn-acordeon"
+          />
+          <label for="btn-acordeon1">
+            <img src="images/pregunta-icon.png" alt="" />
+            <b>¿Cómo comprar en la web?</b>
+          </label>
+          <div class="contenido-acordeon">
+            <p>
+              <b>✅ 1. Agrega productos a tu carrito</b>
+              <br />
+              Explora nuestra <a href="">TIENDA</a> y elige lo que más te guste.
+              Selecciona el modelo, color y talle, y haz clic en
+              <b>"Agregar al carrito".</b> Puedes sumar todos los productos que
+              quieras. <br /><br />
+              <b>✅ 2. Revisa tu pedido</b>
+              <br />
+              Entra a tu a <a href="">CARRITO</a> para ver el resumen de tu
+              compra y el total. Si todo está correcto, haz clic en el botón
+              <b>"PEDIR POR WHATSAPP".</b> <br /><br />
+              <b>✅ 3. Completa tus datos de entrega</b>
+              <br />
+              Se abrirá un breve formulario. Elige si prefieres
+              <b>Retiro en local, Envío en moto o Expreso.</b> Completa los
+              datos correspondientes para que sepamos a dónde enviar tu pedido.
+              <br /><br />
+              <b>✅ 4. Envía tu comprobante por WhatsApp</b>
+              <br />
+              Al finalizar, la web generará automáticamente un comprobante
+              detallado con tu pedido y tus datos. Se abrirá tu WhatsApp con un
+              mensaje listo para enviar.
+              <b>¡Solo tienes que darle a "Enviar"!</b> <br /><br />
+              <b>✅ 5. Coordinamos pago y entrega</b>
+              <br />
+              Una vez que recibamos tu mensaje, confirmaremos el stock y te
+              pasaremos los datos para el pago. Luego, coordinaremos el envío o
+              el retiro por el local.
+            </p>
+          </div>
+        </div>
+
+        <div class="acordeon-item">
+          <input
+            type="radio"
+            name="acordeon"
+            id="btn-acordeon2"
+            class="btn-acordeon"
+          />
+          <label for="btn-acordeon2">
+            <img src="images/pregunta-icon.png" alt="" />
+            <b>Métodos de pago</b>
+          </label>
+          <div class="contenido-acordeon">
+            <p>
+              <b>✅ Depósito o Transferencia Bancaria 🏦</b>
+              <br />
+              Te enviaremos los datos de nuestra cuenta bancaria por WhatsApp
+              una vez confirmado tu pedido.
+              <br /><br />
+              <b>✅ Efectivo 💵</b>
+              <br />
+              Puedes abonar en nuestro local al momento de retirar tu pedido.
+              <br /><br />
+              <b>✅ MercadoPago 📲</b>
+              <br />
+              Te pasaremos el CVU o Alias de nuestra cuenta para que puedas
+              realizar la transferencia.
+            </p>
+          </div>
+        </div>
+
+        <div class="acordeon-item">
+          <input
+            type="radio"
+            name="acordeon"
+            id="btn-acordeon3"
+            class="btn-acordeon"
+          />
+          <label for="btn-acordeon3">
+            <img src="images/pregunta-icon.png" alt="" />
+            <b>Envíos</b>
+          </label>
+          <div class="contenido-acordeon">
+            <p>
+              <i
+                ><b
+                  >📌 El costo y la demora del envío corren por cuenta del
+                  comprador.</b
+                ></i
+              >
+              <br /><br />
+              <u>🚛 Métodos de Envío:</u>
+              <br /><br />
+              <b>✅ Transporte o Expreso (a elección del cliente)</b>
+              <br />
+              Puedes elegir el transporte que prefieras. Algunas opciones son:
+              Andreani, Correo Argentino, Buspack, Crucero Express, Vía Cargo,
+              Integral Pack, SendBox, MD Cargas. El traslado desde nuestro local
+              hasta el transporte elegido tiene un recargo de $4000 para pagarle
+              al cadete que despacha. El costo del envío depende del transporte
+              y se abona al recibir el pedido.
+              <br /><br />
+              <b>✅ Envíos en Moto en CABA 🏍️</b>
+              <br />
+              Consulta el precio según la dirección.
+              <br /><br />
+              <b>✅ Retiro en el Local 🏬</b>
+              <br />
+              Puedes pagar y retirar tu pedido en el local, o enviar a un
+              comisionista a retirarlo.
+            </p>
+          </div>
+        </div>
+      </section>
+      <section class="btn-comprar-section">
+        <a href="#productos" class="btn-comprar">Comenzar a comprar</a>
+      </section>
+    </main>
     <footer class="footer">
       <div class="social-container">
         <div class="redes-sociales">

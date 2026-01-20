@@ -165,10 +165,15 @@ body {
     transform: rotate(180deg);
 }
 
+.quiero-comprar-icon {
+    width: 100px;
+    height: auto;
+}
+
 .video-container {
     position: relative;
     width: 100%;
-    height: 100vh;
+    height: 80vh;
     /* Ajusta la altura (80% de la pantalla) */
     overflow: hidden;
     display: flex;
@@ -176,7 +181,7 @@ body {
     justify-content: center;
     color: white;
     text-align: center;
-    line-height: 0;
+
     /* Elimina espacios vacíos debajo del video */
 
     z-index: 1;
@@ -218,12 +223,84 @@ body {
     color: white;
 
     /* MEZCLA: Empieza con negro 40%, y termina con el violeta de tu marca */
-    background: linear-gradient(
-        to bottom, 
-        rgba(0, 0, 0, 0.4) 0%,   /* Oscuridad arriba */
-        rgba(0, 0, 0, 0.4) 60%,  /* Mantiene la oscuridad hasta el 60% */
-        #7454d9 100%             /* Funde hacia tu color al final */
-    );
+    background: linear-gradient(to bottom,
+            rgba(0, 0, 0, 0.4) 0%,
+            /* Oscuridad arriba */
+            rgba(0, 0, 0, 0.4) 60%,
+            /* Mantiene la oscuridad hasta el 60% */
+            #7454d9 100%
+            /* Funde hacia tu color al final */
+        );
+}
+
+.video-overlay p {
+    margin: 0;
+}
+
+main {
+    padding: 0 15%;
+}
+
+.acordeon {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.acordeon-item img {
+    width: 40px;
+    height: auto;
+    margin: 0 5px;
+}
+
+.acordeon-item label {
+    padding: 15px;
+    font-size: 20px;
+    background: #ffffff;
+    color: #b591ef;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    transition: all 300ms ease;
+    display: flex;
+    align-items: center;
+    border-radius: 50px 50px 50px 50px;
+}
+
+.acordeon-item label:hover {
+    background: #b591ef;
+    color: #ffffff;
+}
+
+.contenido-acordeon {
+    max-height: 0px;
+    overflow: hidden;
+    transition: all 400ms ease;
+    line-height: 30px;
+    background-color: #d6c3ff;
+    border-radius: 40px 40px 40px 40px;
+    color: #7454d9;
+}
+
+.contenido-acordeon a {
+    color: #7454d9;
+    font-weight: bold;
+}
+
+.btn-acordeon:checked ~ .contenido-acordeon {
+    /* Un número lo suficientemente grande para que quepa todo */
+    max-height: 2000px; 
+    padding: 20px;
+}
+
+.btn-acordeon {
+    display: none;
+}
+
+.btn-comprar-section{
+    display: flex;
+    justify-content: center; /* Lo centra horizontalmente */
+    width: 100%;
+    margin: 40px 0;
 }
 
 .btn-comprar {
@@ -232,239 +309,8 @@ body {
     color: white;
     text-decoration: none;
     border-radius: 30px;
-    margin-top: 20px;
     font-weight: bold;
-    transition: 0.3s;
-}
-
-main {
-    padding: 0 15%;
-}
-
-.features {
-    margin: 70px 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.feature {
-    border: 4px solid #ffffff;
-    color: #ffffff;
-    border-radius: 50px;
-    padding: 30px;
-    width: 45%;
-    height: auto;
-    text-align: center;
-    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.2);
-}
-
-.feature img {
-    width: 120px;
-    height: auto;
-}
-
-.section-title {
-    background-color: #ffffff;
-    color: #b591ef;
-    font-size: 30px;
-    padding: 15px;
-    border-radius: 20px;
-    text-align: center;
-    margin: 20px 0;
-    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.2);
-}
-
-.section-title-inverse {
-    background-color: #b591ef;
-    color: #ffffff;
-    font-size: 30px;
-    padding: 15px;
-    border-radius: 20px;
-    text-align: center;
-    margin: 20px 0;
-    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.2);
-}
-
-.carrusel-wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-
-.grid-productos {
-    display: flex;
-    /* Mantenemos flex para que se pongan en línea */
-    gap: 20px;
-    overflow-x: hidden;
-    scroll-behavior: smooth;
-    padding: 20px 0;
-    width: 100%;
-}
-
-.producto-card {
-    /* ELIMINAMOS width: 100% */
-    background-color: #ffffff;
-    border-radius: 40px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-
-    /* Calculamos para que entren exactamente 3 considerando los 2 espacios (gap) de 20px */
-    flex: 0 0 calc((100% - 40px) / 3);
-    min-width: calc((100% - 40px) / 3);
-    margin: 0;
-}
-
-.producto-card img {
-    box-sizing: border-box;
-    /* Incluye el padding y el borde en el ancho total */
-    width: 100%;
-    border: 15px solid #ffffff;
-    border-radius: 40px;
-}
-
-.producto-info {
-    padding: 0 20px;
-}
-
-.producto-name {
-    margin: 0;
-}
-
-.colors {
-    display: flex;
-}
-
-.color-option {
-    margin-right: 10px;
-    display: flex;
-    align-items: center;
-}
-
-.color-option input {
-    display: none;
-}
-
-.color {
-    width: 25px;
-    height: 25px;
-    border-radius: 100px;
-}
-
-.btn-ver-mas {
-    background-color: #b591ef;
-    font-weight: bold;
-    padding: 8px;
-    border-radius: 20px;
-    border: none;
-    font-family: "Unbounded", sans-serif;
-    margin: 20px 0;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    /* Centra horizontalmente */
-    align-items: center;
-    /* Centra verticalmente (opcional) */
-    width: 100%;
-}
-
-.btn-ver-mas a {
-    text-decoration: none;
-    color: #ffffff;
-}
-
-.producto-href {
-    text-decoration: none;
-    color: black;
-}
-
-.destacados,
-.ofertas {
-    margin-bottom: 100px;
-}
-
-.flecha-carrusel {
-    width: 40px;
-    /* Ajusta según el tamaño de tu imagen */
-    height: auto;
-    cursor: pointer;
-    position: absolute;
-    z-index: 10;
-    transition: transform 0.2s;
-}
-
-.flecha-carrusel:hover {
-    transform: scale(1.2);
-}
-
-.prev {
-    left: -50px;
-}
-
-.next {
-    right: -50px;
-}
-
-#grid-destacados,
-#grid-ofertas {
-    display: flex;
-    gap: 20px;
-    overflow-x: hidden;
-    scroll-behavior: smooth;
-    width: 100%;
-}
-
-.sobre-nosotras {
-    margin-bottom: 100px;
-
-}
-
-.info-sobre-nosotras {
-
-    display: flex;
-    justify-content: space-between;
-    align-items: start;
-}
-
-/*
-.direccion,
-.horarios {
-    background-color: #ffffff;
-    padding: 20px;
-    width: 45%;
-    text-align: center;
-    border-radius: 40px;
-    margin: 30px 0 0 0;
-    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.2);
-}*/
-
-.direccion,
-.horarios {
-    background-color: #ffffff;
-    color: #b591ef;
-    border-radius: 50px;
-    padding: 30px;
-    width: 48%;
-    height: auto;
-    text-align: center;
-    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.2);
-}
-
-.icon-direccion,
-.icon-horarios {
-    width: 60px;
-    height: auto;
-}
-
-.sobre-nosotras iframe {
-    border-radius: 50px;
-    margin: 30px 0;
-    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.2);
-}
-
-.semana {
-    display: flex;
-    justify-content: space-between;
-    text-align: start;
+    
 }
 
 /*----------------footer----------------*/
@@ -671,78 +517,4 @@ main {
     font-size: 20px;
     cursor: pointer;
     margin-left: 10px;
-}
-
-/*----------------RESONSIVE (Móviles)----------------*/
-@media (max-width: 768px) {
-
-    /* Ajustamos el contenedor principal para que no tenga tanto margen */
-    main {
-        padding: 0 10%;
-    }
-
-    /* Reducimos el logo y quitamos márgenes excesivos en el header */
-    .header {
-        margin: 0;
-        border-radius: 0 0 20px 20px;
-        padding: 0 15px;
-        top: 28px;
-    }
-
-    .video-container {
-        height: 100vh;
-        /* Un poco más bajo en celulares */
-    }
-
-    .logo {
-        width: 150px;
-    }
-
-    /* Ajuste del botón menú para que no esté tan desplazado */
-    .menu-btn {
-        margin-right: 0;
-    }
-
-    /* BARRA LATERAL FULL SCREEN */
-    .sidebar {
-        width: 100%;
-        /* Ocupa todo el ancho */
-        left: -100%;
-        /* Se oculta completamente a la izquierda */
-        padding-top: 80px;
-        /* Más espacio para el botón de cerrar */
-    }
-
-    /* Cuando el toggle está activado en móvil */
-    #nav-toggle:checked~.sidebar {
-        left: 0;
-    }
-
-    /* Aumentar el tamaño de los enlaces para que sea fácil tocar con el dedo */
-    .sidebar ul li a {
-        padding: 20px;
-        font-size: 1.1rem;
-        text-align: center;
-        /* Opcional: centra el texto en el menú móvil */
-    }
-
-    .producto-card {
-        /* Calculamos para que entren 2 productos y 1 gap de 20px */
-        flex: 0 0 calc((100% - 20px) / 2);
-        min-width: calc((100% - 20px) / 2);
-    }
-
-    /* Opcional: Si las flechas estorban en móvil, puedes ponerlas sobre el producto */
-    .prev {
-        left: -40px;
-    }
-
-    .next {
-        right: -40px;
-    }
-
-    .flecha-carrusel {
-        width: 30px;
-        /* Un poco más chicas en móvil */
-    }
 }
