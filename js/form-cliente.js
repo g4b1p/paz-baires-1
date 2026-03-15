@@ -50,7 +50,6 @@ document.addEventListener("DOMContentLoaded", () => {
   if (btnFinalizarForm) {
     btnFinalizarForm.addEventListener("click", validarYEnviar);
   }
-
 });
 
 function renderizarFormularioSegunEnvio(metodo) {
@@ -113,8 +112,50 @@ function cargarProvincias(selectId) {
   });
 }
 
-function validarYEnviar(e) {
+// --- NUEVA FUNCIÓN PARA EL EXCEL ---
+async function registrarPedidoExcel(d, carrito, elecciones) {
+  const API_URL =
+    "https://script.google.com/macros/s/AKfycbx3t1MhseZqhqEu9ZqfztVe5wXGSj9CcWKLRRvf7xdxApZY_tj_0i0xw1vyOQAGEl3k/exec"; // Pegá aquí tu URL de implementación
+
+  console.log("Intentando enviar a Excel...", d); // Ver si los datos están listos
+
+  // 1. Calculamos el total
+  const total = carrito.reduce((acc, item) => acc + item.subtotal, 0);
+
+  // 2. Preparamos el detalle de productos con el separador |
+  const detalleProductos = carrito
+    .map((i) => `${i.cantidad}x ${i.nombre} (${i.variante})`)
+    .join(" | ");
+
+  // 3. Preparamos el objeto para el Excel (nombres coinciden con tu doPost)
+  const datosVenta = {
+    cliente: d.nombre,
+    telefono: d.tel,
+    envio: d.metodo,
+    pago: elecciones.metodoPago || "No especificado",
+    productos: detalleProductos,
+    total: total,
+  };
+
+  try {
+    const response = await fetch(API_URL, {
+      method: "POST",
+      mode: "no-cors", // Con no-cors no podemos leer la respuesta, pero el envío sale
+      body: JSON.stringify(datosVenta),
+    });
+    console.log("Petición enviada al servidor de Google");
+  } catch (error) {
+    console.error("Error en el fetch:", error);
+  }
+}
+
+async function validarYEnviar(e) {
   e.preventDefault();
+
+  // 1. CAPTURAMOS EL BOTÓN AQUÍ MISMO (Para evitar el ReferenceError)
+  const btnFinalizar = e.currentTarget;
+  // e.currentTarget es el botón que disparó el evento, ¡es lo más seguro!
+
   const elecciones = JSON.parse(localStorage.getItem("eleccionesFinales"));
   const m = elecciones.metodoEnvio;
 
@@ -162,7 +203,27 @@ function validarYEnviar(e) {
     Object.assign(datosTemporalesCliente, { retira });
   }
 
-  enviarPedidoWhatsApp(datosTemporalesCliente);
+  // 2. EFECTO VISUAL DE CARGA
+  btnFinalizar.disabled = true;
+  btnFinalizar.innerHTML = `Procesando...`;
+
+  // --- INTEGRACIÓN FINAL ---
+  const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+  try {
+    // 3. GUARDADO EN EXCEL (Esperamos a que se envíe)
+    await registrarPedidoExcel(datosTemporalesCliente, carrito, elecciones);
+
+    btnFinalizar.innerHTML = "✅ ¡Pedido Enviado!";
+
+    // 4. ABRIR WHATSAPP
+    enviarPedidoWhatsApp(datosTemporalesCliente);
+  } catch (error) {
+    console.error("Error en el proceso final:", error);
+    btnFinalizar.disabled = false;
+    btnFinalizar.innerHTML = "Reintentar finalizar";
+    alert("Hubo un problema al procesar. Intentá de nuevo.");
+  }
 }
 
 function enviarPedidoWhatsApp(d) {
