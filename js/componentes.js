@@ -79,8 +79,8 @@ function insertarHeader() {
   if (esHome) {
     headerHTML += `
       <section class="video-container">
-        <video autoplay muted loop class="video-bg">
-          <source src="video/paz-baires-v1.mp4" type="video/mp4" />
+        <video autoplay muted loop playsinline class="video-bg">
+          <source src="./video/paz-baires-v1.mp4" type="video/mp4" />
           Tu navegador no soporta videos.
         </video>
         <div class="video-overlay">
