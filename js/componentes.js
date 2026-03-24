@@ -82,7 +82,7 @@ function insertarHeader() {
 
   // 2. Si es el Home o Quiero Comprar, LE SUMAMOS el video
   if (esHome) {
-    const videoUrl = "https://www.w3schools.com/html/mov_bbb.mp4";
+    const videoUrl = `${pathBase}images/paz-baires-v1.mp4`;
     console.log("🎥 Intentando cargar video desde:", videoUrl);
 
     headerHTML += `
