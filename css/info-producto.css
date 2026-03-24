@@ -33,7 +33,7 @@ main {
 }
 
 /* Ocultamos todo lo que esté dentro de la tarjeta mientras carga */
-.product-container.loading > * {
+.product-container.loading>* {
     display: none;
 }
 
@@ -52,17 +52,31 @@ main {
     border-radius: 30px;
     flex: 1.2;
     /* Galería más ancha */
+    min-width: 0;
+    /* Permite que el contenedor sepa que puede achicarse si es necesario */
 }
 
 .main-image-wrapper {
     position: relative;
+    border-radius: 20px;
+    /* Aquí aplicamos el redondeo que querés */
+    overflow: hidden;
+    /* Esto "corta" cualquier cosa que se salga de los bordes curvos */
+    background-color: #fdfdfd;
+    /* Evita que se vea el fondo oscuro si la foto no llena el cuadro */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .main-image img {
     width: 100%;
     max-height: 500px;
     object-fit: contain;
-    border-radius: 30px;
+    display: block;
+    border-radius: 20px;
+    /* Ya no lo necesita */
 }
 
 .nav-arrow {
@@ -101,6 +115,8 @@ main {
     gap: 10px;
     overflow-x: auto;
     padding-bottom: 10px;
+    width: 100%;
+    /* No deja que sea más ancho que la galería */
 }
 
 .thumb {
@@ -225,9 +241,12 @@ main {
 
 /* Esto va fuera de las media queries, en la parte general */
 #techDetails {
-    display: flex;       /* Los pone uno al lado del otro */
-    flex-wrap: wrap;     /* Si no entran, bajan a la siguiente línea */
-    gap: 10px;           /* Espacio entre cuadros */
+    display: flex;
+    /* Los pone uno al lado del otro */
+    flex-wrap: wrap;
+    /* Si no entran, bajan a la siguiente línea */
+    gap: 10px;
+    /* Espacio entre cuadros */
     margin-top: 0;
 }
 
@@ -237,11 +256,13 @@ main {
     border-radius: 10px;
     font-size: 0.8rem;
     line-height: 1.4;
-    min-width: fit-content; /* Se ajusta al texto */
+    min-width: fit-content;
+    /* Se ajusta al texto */
 }
 
 .detail-item strong {
-    display: block;      /* Pone el título arriba */
+    display: block;
+    /* Pone el título arriba */
     font-size: 0.7rem;
     text-transform: uppercase;
     opacity: 0.7;
@@ -307,6 +328,7 @@ main {
 /*----------------RESONSIVE----------------*/
 
 @media (max-width: 1200px) {
+
     /* Ajustamos el contenedor principal para que no tenga tanto margen */
     main {
         padding-top: 150px;
@@ -320,6 +342,8 @@ main {
         /* Quitamos padding para que la imagen aproveche el ancho */
         overflow: hidden;
         /* Para que los bordes redondeados del contenedor afecten a los hijos */
+        border-radius: 30px;
+        /* Refuerza el redondeado del contenedor */
     }
 
     .product-gallery {
@@ -328,11 +352,18 @@ main {
         width: 100%;
         background: #ffffff;
         /* Fondo sólido en móvil para mejor visibilidad */
+        border-radius: 0;
+        /* Quitamos este para que mande el del product-container */
+    }
+
+    .main-image-wrapper {
+        border-radius: 20px;
+        /* Redondeado un poco menor para tablets */
     }
 
     .main-image img {
         max-height: 400px;
-        /* Reducimos un poco la altura máxima en móvil */
+        border-radius: 20px;
     }
 
     .product-info-panel {
@@ -340,6 +371,8 @@ main {
         flex: none;
         width: 100%;
         /* Eliminamos radios internos si los hubiera */
+        min-width: 350px;
+        /* Garantiza que el panel de info no sea más chico que esto */
     }
 
     .current-price {
@@ -390,4 +423,8 @@ main {
         gap: 12px;
         /* Un poquito menos de espacio para que entren más por fila */
     }
+
+    .main-image-wrapper {
+    border-radius: 20px; /* Redondeado ideal para celulares */
+}
 }

@@ -8,6 +8,27 @@ let filtrosActivos = {
   soloOfertas: false,
 };
 
+let yaFiltroElUsuario = false; // Variable de control
+
+document.addEventListener("DOMContentLoaded", () => {
+  const contenedor = document.getElementById("contenedor-tienda");
+  if (contenedor) {
+    // Ponemos esqueletos de entrada
+    let esqueletosHTML = "";
+    for (let i = 0; i < 8; i++) { // 8 para llenar la grilla inicial
+      esqueletosHTML += `
+        <div class="producto-card skeleton">
+            <div class="skeleton-img" style="height: 250px; background: #eee; border-radius: 20px; margin-bottom: 15px;"></div>
+            <div class="skeleton-text" style="height: 20px; background: #eee; width: 80%; margin-bottom: 10px;"></div>
+            <div class="skeleton-text" style="height: 20px; background: #eee; width: 40%;"></div>
+        </div>`;
+    }
+    contenedor.innerHTML = esqueletosHTML;
+  }
+
+  // LLAMADA: Ejecutala al final de configurarEscuchadores()
+});
+
 // Intentar cargar desde la memoria local ANTES de esperar a Google
 const cache = localStorage.getItem("productos_cache");
 if (cache) {
@@ -35,6 +56,15 @@ if (cache) {
 // 2. INICIALIZACIÓN
 // Esperamos a que los productos lleguen desde Google Sheet
 document.addEventListener("productosListos", () => {
+  console.log("🔄 Datos frescos de Google Sheets recibidos");
+
+  // Si el usuario ya tocó filtros, NO reseteamos la lista completa, 
+  // solo actualizamos la variable global 'productos' pero mantenemos la vista actual.
+  if (yaFiltroElUsuario) {
+    console.log("Filtros activos detectados, no se reinicia la vista.");
+    return;
+  }
+
   const params = new URLSearchParams(window.location.search);
   const catURL = params.get("categoria");
 
@@ -80,7 +110,10 @@ document.addEventListener("productosListos", () => {
 // MODIFICACIÓN EN LA FUNCIÓN DE RENDERIZADO
 function renderizarProductos(lista) {
   const contenedor = document.getElementById("contenedor-tienda");
+  if (!contenedor) return;
+
   contenedor.innerHTML = "";
+  contenedor.classList.remove("loading"); // <-- IMPORTANTE
 
   if (lista.length === 0) {
     contenedor.innerHTML = `<p class="no-results" style="color: #ffffff;">No se encontraron productos con esos filtros.</p>`;
@@ -119,14 +152,16 @@ function aplicarFiltros() {
   const norm = (t) =>
     t
       ? t
-          .toString()
-          .toLowerCase()
-          .normalize("NFD")
-          .replace(/[\u0300-\u036f]/g, "")
-          .trim()
+        .toString()
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .trim()
       : "";
 
   const resultado = productos.filter((p) => {
+    yaFiltroElUsuario = true; // <--- AGREGAR ESTO AQUÍ
+
     // 1. Categoría (Colección)
     const catFiltro = norm(filtrosActivos.categoria);
     const pColeccion = norm(p.coleccion);
@@ -246,6 +281,8 @@ function configurarEscuchadores() {
       aplicarFiltros();
     };
   }
+
+  sincronizarFiltrosDesdeUI();
 }
 
 // 6. FUNCIÓN LIMPIAR
@@ -300,4 +337,39 @@ function toggleFiltros() {
     overlay.style.display = "none";
     document.body.style.overflow = "auto"; // Devuelve el scroll
   }
+}
+
+function sincronizarFiltrosDesdeUI() {
+  // Si todavía no cargaron los productos (ni de caché ni de Google), no filtramos nada aún
+  if (!window.productos || window.productos.length === 0) return;
+
+  console.log("🔄 Sincronizando filtros con lo que quedó marcado en el navegador...");
+
+  // 1. Limpiamos el objeto de filtros para llenarlo de nuevo con lo que hay en pantalla
+  filtrosActivos.ambientes = [];
+  filtrosActivos.publicos = [];
+  filtrosActivos.materiales = [];
+
+  // 2. Buscamos todos los checkboxes marcados y los metemos al objeto
+  document.querySelectorAll('.sidebar-filtros input[type="checkbox"]').forEach(check => {
+    if (check.checked) {
+      const valor = check.value;
+      const grupo = check.name;
+
+      if (grupo === "ambiente") filtrosActivos.ambientes.push(valor);
+      else if (grupo === "publico") filtrosActivos.publicos.push(valor);
+      else if (grupo === "material") filtrosActivos.materiales.push(valor);
+      else if (grupo === "oferta") filtrosActivos.soloOfertas = true;
+    }
+  });
+
+  // 3. Sincronizar el Slider de Precio
+  const slider = document.getElementById("rango-precio");
+  if (slider) {
+    filtrosActivos.precioMax = parseInt(slider.value);
+    document.getElementById("precio-valor").innerText = `$${filtrosActivos.precioMax.toLocaleString()}`;
+  }
+
+  // 4. Ejecutamos el filtro para que la lista de productos se limpie YA
+  aplicarFiltros();
 }

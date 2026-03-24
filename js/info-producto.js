@@ -1,6 +1,8 @@
 // Variable global para rastrear qué eligió el usuario
 let varianteSeleccionada = null;
 
+let usuarioYaInteractuo = false; // Nueva variable de control
+
 // 1. INTENTO DE CARGA INSTANTÁNEA (Caché)
 const cache = localStorage.getItem("productos_cache");
 if (cache) {
@@ -16,6 +18,13 @@ if (cache) {
 // 2. ESCUCHA DE ACTUALIZACIONES (Google Sheets)
 // Si Google responde después con datos nuevos, volvemos a cargar para actualizar precios/stock
 document.addEventListener("productosListos", () => {
+  console.log("🔄 Datos frescos de Google Sheets recibidos...");
+  // SI EL USUARIO YA ELIGIÓ ALGO, NO RECARGAMOS LA PÁGINA
+  if (usuarioYaInteractuo) {
+    console.log("⚠️ El usuario ya está eligiendo opciones, no se reinicia para no perder la selección.");
+    return;
+  }
+
   console.log("🔄 Actualizando info del producto desde Google Sheets...");
   if (typeof cargarProducto === "function") {
     cargarProducto();
@@ -64,8 +73,9 @@ function cargarProducto() {
     producto.imagenes.forEach((img, index) => {
       const thumb = document.createElement("img");
       thumb.src = img;
-      thumb.className = `thumb ${index === 0 ? "active" : ""}`;
+      thumb.className = `thumb ${mainImg.src === img ? "active" : ""}`;
       thumb.onclick = function () {
+        usuarioYaInteractuo = true; // <--- AGREGAR ESTO
         mainImg.src = this.src;
         document
           .querySelectorAll(".thumb")
@@ -140,6 +150,7 @@ function cargarProducto() {
   const qtyInput = document.getElementById("itemQuantity");
 
   decreaseQty.onclick = () => {
+    usuarioYaInteractuo = true; // <--- AGREGAR ESTO
     let current = parseInt(qtyInput.value);
     if (current > 1) {
       qtyInput.value = current - 1;
@@ -148,6 +159,7 @@ function cargarProducto() {
   };
 
   increaseQty.onclick = () => {
+    usuarioYaInteractuo = true; // <--- AGREGAR ESTO
     let current = parseInt(qtyInput.value);
     qtyInput.value = current + 1;
     actualizarGuia(); // <--- Actualiza el texto
@@ -203,19 +215,23 @@ function renderSeccionColores(container, prod) {
   prod.variantes.forEach((v) => {
     const dot = document.createElement("div");
     dot.className = "color-dot";
+    if (varianteSeleccionada === v.nombre) dot.classList.add("active");
     dot.style.backgroundColor = v.valor;
     dot.onclick = function () {
-      document
-        .querySelectorAll(".color-dot")
-        .forEach((d) => d.classList.remove("active"));
+      usuarioYaInteractuo = true;
+      document.querySelectorAll(".color-dot").forEach((d) => d.classList.remove("active"));
       this.classList.add("active");
-      varianteSeleccionada = v.nombre; // Guardamos la variante
-      document.querySelector("#colorNameDisplay").innerHTML =
-        `Seleccionado: <strong>${v.nombre}</strong>`;
-      actualizarGuia(); // <--- Actualiza el texto de cantidad
+      varianteSeleccionada = v.nombre;
+      document.querySelector("#colorNameDisplay").innerHTML = `Seleccionado: <strong>${v.nombre}</strong>`;
+      actualizarGuia();
     };
     grid.appendChild(dot);
   });
+
+  // Si ya había algo seleccionado (por caché), actualizamos el texto de abajo
+  if (varianteSeleccionada) {
+    document.querySelector("#colorNameDisplay").innerHTML = `Seleccionado: <strong>${varianteSeleccionada}</strong>`;
+  }
 }
 
 function renderSeccionEstampados(container, prod) {
