@@ -82,12 +82,12 @@ function insertarHeader() {
 
   // 2. Si es el Home o Quiero Comprar, LE SUMAMOS el video
   if (esHome) {
-    const videoUrl = `${pathBase}images/paz-baires-v1.mp4`;
+    const videoUrl = "video/intro.mp4"; // Sin barras raras, directo.
     console.log("🎥 Intentando cargar video desde:", videoUrl);
 
     headerHTML += `
       <section class="video-container">
-        <video autoplay muted loop playsinline preload="auto" class="video-bg">
+        <video autoplay muted loop playsinline preload="metadata" class="video-bg">
           <source src="${videoUrl}" type="video/mp4" />
           Tu navegador no soporta videos.
         </video>
