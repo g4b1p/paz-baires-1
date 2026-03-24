@@ -656,6 +656,10 @@ main {
         margin: 0 10px;
     }
 
+    main {
+        padding: 0 4%;
+    }
+
     .video-overlay h1 {
         font-size: 24px;
         /* Achicar la letra evita que se encimen las líneas */
