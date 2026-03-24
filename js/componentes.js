@@ -81,7 +81,7 @@ function insertarHeader() {
     headerHTML += `
       <section class="video-container">
         <video autoplay muted loop playsinline preload="auto" class="video-bg">
-          <source src="/paz-baires/images/pazbairesintro.mp4" type="video/mp4" />
+          <source src="images/pazbaires-intro.mp4" type="video/mp4" />
           Tu navegador no soporta videos.
         </video>
         <div class="video-overlay">
