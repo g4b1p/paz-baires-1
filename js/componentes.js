@@ -76,27 +76,19 @@ function insertarHeader() {
       </div>
     `;
 
-  // --- PRUEBA DE DIAGNÓSTICO PAZ BAIRES ---
-  console.log("🔍 DIAGNÓSTICO DE VIDEO:");
-  const videoPath = "images/pazbairesintro.mp4"; // O el nombre que tenga ahora
-  console.log("Ruta intentada:", videoPath);
-  console.log("URL completa que busca el navegador:", new URL(videoPath, document.baseURI).href);
-
-  // Intentar "pre-cargar" el video para ver si el servidor responde
-  fetch(videoPath)
-    .then(response => {
-      if (response.ok) console.log("✅ El archivo EXISTE en el servidor y es accesible.");
-      else console.error("❌ El servidor dice que el archivo NO EXISTE (Error 404).");
-    })
-    .catch(err => console.error("❌ Error de red al intentar acceder al video:", err));
-  // ---------------------------------------
+  // Detectamos si estamos en GitHub o en Local para que no se rompa la ruta
+  const esGithub = window.location.hostname.includes('github.io');
+  const pathBase = esGithub ? '/paz-baires/' : '';
 
   // 2. Si es el Home o Quiero Comprar, LE SUMAMOS el video
   if (esHome) {
+    const videoUrl = `${pathBase}images/pazbairesintro.mp4`;
+    console.log("🎥 Intentando cargar video desde:", videoUrl);
+
     headerHTML += `
       <section class="video-container">
         <video autoplay muted loop playsinline preload="auto" class="video-bg">
-          <source src="images/pazbairesintro.mp4" type="video/mp4" />
+          <source src="${videoUrl}" type="video/mp4" />
           Tu navegador no soporta videos.
         </video>
         <div class="video-overlay">
