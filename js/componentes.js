@@ -80,7 +80,7 @@ function insertarHeader() {
     headerHTML += `
       <section class="video-container">
         <video autoplay muted loop playsinline class="video-bg">
-          <source src="./video/paz-baires-v1.mp4" type="video/mp4" />
+          <source src="https://files.catbox.moe/rxjmuc.mp4" type="video/mp4" />
           Tu navegador no soporta videos.
         </video>
         <div class="video-overlay">
@@ -149,7 +149,7 @@ function insertarFooter() {
         <hr class="line-footer" />
         <section class="firma">
           <p>Created by</p>
-          <img src="/imagotipo-gabi-coder.png" alt="" />
+          <img src="images/GabCoder.png" alt="" />
         </section>
       </div>
 
