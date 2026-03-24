@@ -1,6 +1,6 @@
 /* Configuración General del Contenedor */
 .tienda-main {
-    padding: 0 5%;
+    padding: 0 1%;
     padding-bottom: 80px;
     /* Reducido un poco para dar aire a las cards */
     max-width: 1400px;
